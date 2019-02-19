@@ -1,0 +1,4 @@
+繁体中文开发
+因为不同部门会借 不同的设备
+例如 notebook , projector, router
+安排 设备的就remark在 行事曆
