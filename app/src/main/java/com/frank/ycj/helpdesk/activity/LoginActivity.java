@@ -21,8 +21,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Properties;
 import java.util.Random;
 
@@ -37,6 +35,7 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import javax.mail.util.ByteArrayDataSource;
 
+
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
@@ -50,6 +49,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().detectDiskReads().
                 detectDiskWrites().detectNetwork().penaltyLog().build());
         StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder().detectLeakedSqlLiteObjects().
@@ -111,6 +111,7 @@ public class LoginActivity extends AppCompatActivity {
             public void done(BmobException e) {
                 if (e==null){
                     try {
+                        Log.i("邮箱：",Global.userInfo.getEmail());
                         sendEmail(Global.userInfo.getEmail(),"重置密碼郵件!", "您的登錄密碼為："+userP);
                     } catch (Exception ex) {
                         ex.printStackTrace();
@@ -131,6 +132,7 @@ public class LoginActivity extends AppCompatActivity {
             Global.userInfo.setPassWord(userP);
             updatePassword(userP);
             Toast.makeText(LoginActivity.this,"密碼錯誤5次，重置密碼已發到公司電郵，請檢查再登錄\n",EToast2.LENGTH_LONG).show();
+            return;
         }
         BmobQuery<UserInfo> query = new BmobQuery<UserInfo>();
         query.addWhereEqualTo(columName, columValue);
@@ -178,11 +180,23 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * 邮件发送程序
+     *
+     * @param to
+     *            接受人
+     * @param subject
+     *            邮件主题
+     * @param content
+     *            邮件内容
+     * @throws Exception
+     * @throws MessagingException
+     */
     public void sendEmail(String to, String subject, String content) throws Exception, MessagingException {
         String host = "smtp.qq.com";
         String address = "1320259466@qq.com";
         String from = "1320259466@qq.com";
-        String password = "fcucszzgvpodhiff";// 密码fcucszzgvpodhiff  zyeqcneqptmpbafe
+        String password = "fcucszzgvpodhiff";
         if ("".equals(to) || to == null) {
             to = "1272275196@qq.com";
         }
@@ -190,6 +204,27 @@ public class LoginActivity extends AppCompatActivity {
         SendEmaill(host, address, from, password, to, port, subject, content);
     }
 
+    /**
+     * 邮件发送程序
+     *
+     * @param host
+     *            邮件服务器 如：smtp.qq.com
+     * @param address
+     *            发送邮件的地址 如：545099227@qq.com
+     * @param from
+     *            来自： wsx2miao@qq.com
+     * @param password
+     *            您的邮箱密码
+     * @param to
+     *            接收人
+     * @param port
+     *            端口（QQ:25）
+     * @param subject
+     *            邮件主题
+     * @param content
+     *            邮件内容
+     * @throws Exception
+     */
     public void SendEmaill(String host, String address, String from, String password, String to, String port, String subject, String content) throws Exception {
         Multipart multiPart;
         String finalString = "";
@@ -226,7 +261,6 @@ public class LoginActivity extends AppCompatActivity {
         transport.sendMessage(message, message.getAllRecipients());
         transport.close();
         Log.i("check", "sent");
-
 
     }
 

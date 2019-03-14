@@ -31,7 +31,7 @@ public class SelectTimeActivity extends AppCompatActivity {
         timePicker = (TimePicker) findViewById(R.id.tpPicker);
         String dd[]=nowDate.split("-");
 
-        datePicker.init(Integer.parseInt(dd[0]), Integer.parseInt(dd[1]), Integer.parseInt(dd[2]), new DatePicker.OnDateChangedListener() {
+        datePicker.init(Integer.parseInt(dd[0]), Integer.parseInt(dd[1])-1, Integer.parseInt(dd[2]), new DatePicker.OnDateChangedListener() {
 
             @Override
             public void onDateChanged(DatePicker view, int year,

@@ -115,7 +115,7 @@ public class ComputeTaskActivity extends AppCompatActivity {
                         tv_allTask.setText("今日已接受任務："+list.size());
                         tv_compeleteTask.setText("今日已完成任務："+hadCompeleteTask);
                     }else {
-                        tv_allTask.setText("今日所有的任務："+list.size()+unCompelteTask);
+                        tv_allTask.setText("今日所有的任務："+(list.size()+unCompelteTask));
                         tv_compeleteTask.setText("今日已完成任務："+hadCompeleteTask);
                     }
 

@@ -31,6 +31,15 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    implementation files('libs/commons-email-1.2.jar')
+    implementation files('libs/commons-net-3.3.jar')
+    implementation files('libs/additionnal.jar')
+    implementation files('libs/activation.jar')
+    implementation files('libs/mail.jar')
+   /* implementation files('libs/httpclient-4.2.5.jar')
+    implementation files('libs/httpcore-4.2.4.jar')*/
+    implementation files('libs/SMSSDK-2.0.2.jar')
     //以下SDK开发者请根据需要自行选择
     //bmob-sdk：Bmob的android sdk包，包含了Bmob的数据存储、文件等服务，以下是最新的bmob-sdk:
     //3.5.5：请务必查看下面注释[1]
@@ -49,8 +58,5 @@ dependencies {
     implementation 'com.amap.api:search:latest.integration'
     implementation 'com.amap.api:location:latest.integration'
     implementation 'com.github.YouAreOnlyOne:AndroidView:0.0.0.4'
-    implementation files('libs/commons-email-1.2.jar')
-    implementation files('libs/commons-net-3.3.jar')
-    implementation files('libs/mail.jar')
-    implementation files('libs/activation.jar')
+
 }
